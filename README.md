@@ -79,6 +79,7 @@ All sensors, controls, and settings will appear automatically under your device.
 |---------|------|-------------|
 | Hostname | Text | Device hostname on the network |
 | Overclock Enabled | Switch | Enable/disable overclocking (required for voltage/frequency changes) |
+| Mining Paused | Switch | Enable/disable mining in pause mode (require firmware >= 2.14.0) |
 
 ## Screenshots
 
