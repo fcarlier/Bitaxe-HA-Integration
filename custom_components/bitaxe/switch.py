@@ -42,6 +42,13 @@ SWITCH_DESCRIPTIONS: tuple[BitAxeSwitchEntityDescription, ...] = (
         api_key="overclockEnabled",
         entity_category=EntityCategory.CONFIG,
     ),
+    BitAxeSwitchEntityDescription(
+        key="mining_paused",
+        name="Mining Paused",
+        icon="mdi:speedometer",
+        api_key="miningPaused",
+        entity_category=EntityCategory.CONFIG,
+    ),
 )
 
 
