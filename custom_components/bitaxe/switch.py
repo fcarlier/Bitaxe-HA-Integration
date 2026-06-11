@@ -100,7 +100,7 @@ class BitAxeSwitch(BitAxeEntity, SwitchEntity):
         """Turn the switch on."""
         _LOGGER.warning("Switch %s turned ON", self.entity_description.key)
         if self.entity_description.key == "mining_paused":
-            await self.connect_on()
+            await self.connect_off()
         else:
             await self._async_set_value(1)
 
@@ -108,7 +108,7 @@ class BitAxeSwitch(BitAxeEntity, SwitchEntity):
         """Turn the switch off."""
         _LOGGER.warning("Switch %s turned OFF", self.entity_description.key)
         if self.entity_description.key == "mining_paused":
-            await self.connect_off()
+            await self.connect_on()
         else:
             await self._async_set_value(0)
 
