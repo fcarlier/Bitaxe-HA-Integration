@@ -1,6 +1,7 @@
 """Switch platform for the BitAxe integration."""
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 
 from homeassistant.components.switch import SwitchEntity, SwitchEntityDescription
@@ -11,6 +12,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import DOMAIN
 from .entity import BitAxeEntity
+
+
+_LOGGER = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -94,6 +98,7 @@ class BitAxeSwitch(BitAxeEntity, SwitchEntity):
 
     async def async_turn_on(self, **kwargs) -> None:
         """Turn the switch on."""
+        _LOGGER.warning("Switch %s turned ON", self.entity_description.key)
         if self.entity_description.key == "mining_paused":
             await self.connect_on()
         else:
@@ -101,6 +106,7 @@ class BitAxeSwitch(BitAxeEntity, SwitchEntity):
 
     async def async_turn_off(self, **kwargs) -> None:
         """Turn the switch off."""
+        _LOGGER.warning("Switch %s turned OFF", self.entity_description.key)
         if self.entity_description.key == "mining_paused":
             await self.connect_off()
         else:
@@ -111,6 +117,7 @@ class BitAxeSwitch(BitAxeEntity, SwitchEntity):
         from . import post_bitaxe_command
 
         ip_address = self._entry.data["ip_address"]
+        _LOGGER.warning("Sending PAUSE command to Bitaxe at %s", ip_address)
         await post_bitaxe_command(self.hass, ip_address, "/api/system/pause")
         await self.coordinator.async_request_refresh()
 
@@ -119,6 +126,7 @@ class BitAxeSwitch(BitAxeEntity, SwitchEntity):
         from . import post_bitaxe_command
 
         ip_address = self._entry.data["ip_address"]
+        _LOGGER.warning("Sending RESUME command to Bitaxe at %s", ip_address)
         await post_bitaxe_command(self.hass, ip_address, "/api/system/resume")
         await self.coordinator.async_request_refresh()
 
