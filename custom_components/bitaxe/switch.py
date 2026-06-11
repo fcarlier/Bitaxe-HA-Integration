@@ -94,11 +94,33 @@ class BitAxeSwitch(BitAxeEntity, SwitchEntity):
 
     async def async_turn_on(self, **kwargs) -> None:
         """Turn the switch on."""
-        await self._async_set_value(1)
+        if self.entity_description.key == "mining_paused":
+            await self.connect_on()
+        else:
+            await self._async_set_value(1)
 
     async def async_turn_off(self, **kwargs) -> None:
         """Turn the switch off."""
-        await self._async_set_value(0)
+        if self.entity_description.key == "mining_paused":
+            await self.connect_off()
+        else:
+            await self._async_set_value(0)
+
+    async def connect_off(self) -> None:
+        """Send POST request to pause mining."""
+        from . import post_bitaxe_command
+
+        ip_address = self._entry.data["ip_address"]
+        await post_bitaxe_command(self.hass, ip_address, "/api/system/pause")
+        await self.coordinator.async_request_refresh()
+
+    async def connect_on(self) -> None:
+        """Send POST request to resume mining."""
+        from . import post_bitaxe_command
+
+        ip_address = self._entry.data["ip_address"]
+        await post_bitaxe_command(self.hass, ip_address, "/api/system/resume")
+        await self.coordinator.async_request_refresh()
 
     async def _async_set_value(self, value: int) -> None:
         """Send the PATCH request and refresh."""
