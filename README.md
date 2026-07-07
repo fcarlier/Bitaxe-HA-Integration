@@ -1,8 +1,8 @@
 # Bitaxe Home Assistant Integration
 
 [![HACS](https://img.shields.io/badge/HACS-Custom-blue.svg)](https://hacs.xyz/)
-[![Latest Release](https://img.shields.io/github/v/release/JCimbal/Bitaxe-HA-Integration)](https://github.com/JCimbal/Bitaxe-HA-Integration/releases)
-[![Stars](https://img.shields.io/github/stars/JCimbal/Bitaxe-HA-Integration)](https://github.com/JCimbal/Bitaxe-HA-Integration/stargazers)
+[![Latest Release](https://img.shields.io/github/v/release/fcarlier/Bitaxe-HA-Integration)](https://github.com/fcarlier/Bitaxe-HA-Integration/releases)
+[![Stars](https://img.shields.io/github/stars/fcarlier/Bitaxe-HA-Integration)](https://github.com/fcarlier/Bitaxe-HA-Integration/stargazers)
 
 A custom Home Assistant integration for monitoring and controlling [BitAxe](https://github.com/skot/bitaxe) open-source bitcoin miners.
 
@@ -12,7 +12,7 @@ A custom Home Assistant integration for monitoring and controlling [BitAxe](http
 
 1. Open the HACS section in your Home Assistant.
 2. Go to **Integrations** and select **Add Repository**.
-3. Enter the repository URL: `https://github.com/JCimbal/Bitaxe-HA-Integration`.
+3. Enter the repository URL: `https://github.com/fcarlier/Bitaxe-HA-Integration`.
 4. Install the integration and restart Home Assistant.
 
 ### Manual
@@ -21,7 +21,7 @@ A custom Home Assistant integration for monitoring and controlling [BitAxe](http
 2. Clone the repository into the `custom_components` folder:
    ```bash
    mkdir -p custom_components
-   git clone https://github.com/JCimbal/Bitaxe-HA-Integration.git /config/custom_components/bitaxe
+   git clone https://github.com/fcarlier/Bitaxe-HA-Integration.git /config/custom_components/bitaxe
    ```
 3. Restart Home Assistant.
 
@@ -88,6 +88,23 @@ All sensors, controls, and settings will appear automatically under your device.
 
 ### Sensor Data Screen
 <img src="custom_components/bitaxe/images/Sensor.png" alt="Sensor Data Screen" style="max-width: 100%; height: auto;">
+
+## Power consumption in the Energy tab's “Individual electrical devices”
+
+<img src="images/energy_tab.png" alt="Energy Tab Screen" style="max-width: 100%; height: auto;">
+
+- Add in configuration.yaml : ```sensor: !include sensors.yaml```
+
+- Add in sensors.yaml : 
+  ```
+  - platform: integration
+    source: sensor.xxx_bitaxe602_power_consumption
+    name: xxx_bitaxe602_power_summation
+    round: 2
+    unit_prefix: k
+    unit_time: h
+    method: left
+  ```
 
 ## Credits
 
