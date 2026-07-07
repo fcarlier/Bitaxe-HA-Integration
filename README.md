@@ -91,7 +91,7 @@ All sensors, controls, and settings will appear automatically under your device.
 
 ## Power consumption in the Energy tab's “Individual electrical devices”
 
-<img src="images/energy_tab.png" alt="Energy Tab Screen" style="max-width: 100%; height: auto;">
+<img src="custom_components/bitaxe/images/energy_tab.png" alt="Energy Tab Screen" style="max-width: 100%; height: auto;">
 
 - Add in configuration.yaml : ```sensor: !include sensors.yaml```
 
