@@ -108,7 +108,9 @@ All sensors, controls, and settings will appear automatically under your device.
 
 ## Credits
 
-This project is a fork of the [original Bitaxe HA Integration](https://github.com/DerMiika/Bitaxe-HA-Integration) by [DerMiika](https://github.com/DerMiika), extended with device controls and configuration management.
+This project is a first fork of the [original Bitaxe HA Integration](https://github.com/DerMiika/Bitaxe-HA-Integration) by [DerMiika](https://github.com/DerMiika), extended with device controls and configuration management.
+
+And after, this project is a second fork of the [original Bitaxe HA Integration](https://github.com/JCimbal/Bitaxe-HA-Integration) by [JCimba](https://github.com/JCimbal), extended with Mining Paused and other feature.
 
 It communicates with [BitAxe](https://github.com/skot/bitaxe) open-source miners via their local REST API. BitAxe is an open-source bitcoin miner project by [skot](https://github.com/skot).
 
